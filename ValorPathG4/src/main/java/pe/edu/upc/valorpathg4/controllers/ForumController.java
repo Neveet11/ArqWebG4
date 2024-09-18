@@ -70,7 +70,7 @@ public class ForumController {
         return listdto;
     }
     @GetMapping("/quantity(ForumsByPsy)")
-    public List<QuantityForumsByPsychologistDTO> q(){
+    public List<QuantityForumsByPsychologistDTO> quantityForumsByPsichologyst(){
         List<String[]> list = fS.CantidadDeForosQueTieneUnPsicologo ();
         List<QuantityForumsByPsychologistDTO> listdto = new ArrayList<>();
         for(String[] columna : list){
