@@ -12,4 +12,6 @@ public interface IForumService {
     public List<Forum> list();
     public Forum listId (int id);
     //agregar los otros US que sirvan
+    public List<String[]>ForosMasActivosEnElEltimoMes ();
+    public List<String[]>CantidadDeForosQueTieneUnPsicologo();
 }
