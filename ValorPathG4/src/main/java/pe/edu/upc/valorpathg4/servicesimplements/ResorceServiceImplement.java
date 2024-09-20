@@ -6,6 +6,7 @@ import pe.edu.upc.valorpathg4.entities.Resource;
 import pe.edu.upc.valorpathg4.repositories.IResourceRepository;
 import pe.edu.upc.valorpathg4.servicesinterfaces.IResourceService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -27,6 +28,11 @@ public class ResorceServiceImplement implements IResourceService {
     @Override
     public List<String[]> Rmenosutilizado() {
         return irr.Rmenosutilizado();
+    }
+
+    @Override
+    public List<String[]> tiporecursomasutilizad(LocalDate fechaInicio, LocalDate fechaFin) {
+        return irr.tiporecursomasutilizado(fechaInicio, fechaFin);
     }
 
 

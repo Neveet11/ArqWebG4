@@ -4,10 +4,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.valorpathg4.dtos.LessUseResourceDTO;
+import pe.edu.upc.valorpathg4.dtos.MostUseResourceDTO;
 import pe.edu.upc.valorpathg4.dtos.ResourceDTO;
 import pe.edu.upc.valorpathg4.entities.Resource;
 import pe.edu.upc.valorpathg4.servicesinterfaces.IResourceService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +51,18 @@ public class ResourceController {
             listdto.add(dto);
         }
         return listdto;
+    }
+    @GetMapping("/maasutilizadoportiempo")
+    public List<MostUseResourceDTO> recursomasutilizadoportiempo(@RequestParam LocalDate fechainicio,@RequestParam LocalDate fechafin) {
+        List<String[]> lista = rS.tiporecursomasutilizad(fechainicio, fechafin);
+        List<MostUseResourceDTO> listadto = new ArrayList<>();
+        for (String[] columna : lista) {
+            MostUseResourceDTO dto = new MostUseResourceDTO();
+            dto.setTiporecurso(columna[0]);
+            dto.setTotalusos(Integer.parseInt(columna[1]));
+            listadto.add(dto);
+        }
+        return listadto;
     }
 
 
