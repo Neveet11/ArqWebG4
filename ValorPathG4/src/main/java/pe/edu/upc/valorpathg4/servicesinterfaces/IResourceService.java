@@ -7,4 +7,5 @@ import java.util.List;
 public interface IResourceService {
     public List<Resource> list();
     public void insert(Resource resour);
+    List<String[]> Rmenosutilizado();
 }

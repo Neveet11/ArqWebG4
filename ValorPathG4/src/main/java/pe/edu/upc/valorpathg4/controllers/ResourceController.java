@@ -3,10 +3,12 @@ package pe.edu.upc.valorpathg4.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.valorpathg4.dtos.LessUseResourceDTO;
 import pe.edu.upc.valorpathg4.dtos.ResourceDTO;
 import pe.edu.upc.valorpathg4.entities.Resource;
 import pe.edu.upc.valorpathg4.servicesinterfaces.IResourceService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +34,21 @@ public class ResourceController {
         ModelMapper m=new ModelMapper();
         Resource r=m.map(dto,Resource.class);
         rS.insert(r);
+    }
+
+    @GetMapping("/menosutilizado")
+    public List<LessUseResourceDTO> Recursomenosutilizado()
+    {
+        List<String[]> lista=rS.Rmenosutilizado();
+        List<LessUseResourceDTO> listdto=new ArrayList<>();
+        for(String[] column:lista)
+        {
+            LessUseResourceDTO dto=new LessUseResourceDTO();
+            dto.setTiporecurso(column[0]);
+            dto.setTotalusos(Integer.parseInt(column[1]));
+            listdto.add(dto);
+        }
+        return listdto;
     }
 
 

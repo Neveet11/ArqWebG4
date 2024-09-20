@@ -12,16 +12,22 @@ import java.util.List;
 public class ResorceServiceImplement implements IResourceService {
 
     @Autowired
-    private IResourceRepository rR;
+    private IResourceRepository irr;
 
     @Override
     public List<Resource> list() {
-        return rR.findAll();
+        return irr.findAll();
     }
 
     @Override
     public void insert(Resource resour) {
-        rR.save(resour);
+        irr.save(resour);
     }
+
+    @Override
+    public List<String[]> Rmenosutilizado() {
+        return irr.Rmenosutilizado();
+    }
+
 
 }
