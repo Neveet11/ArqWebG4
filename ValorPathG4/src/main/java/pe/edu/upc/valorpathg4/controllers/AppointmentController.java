@@ -4,12 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.valorpathg4.dtos.AppointmentDTO;
-import pe.edu.upc.valorpathg4.dtos.QuantityAppointmentsAttendedByPsychologistTimeDTO;
-import pe.edu.upc.valorpathg4.dtos.QuantityAppointmentsAttendedByUsersDTO;
+import pe.edu.upc.valorpathg4.dtos.*;
 import pe.edu.upc.valorpathg4.entities.Appointment;
 import pe.edu.upc.valorpathg4.servicesinterfaces.IAppointmentService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -75,6 +74,38 @@ public class AppointmentController {
             dto.setPsychologistName(columna[1]);
             dto.setPsychologistLastName(columna[2]);
             dto.setQuantityAppointmentsAttended(Integer.parseInt(columna[3]));
+            listdto.add(dto);
+        }
+        return listdto;
+    }
+
+    @PreAuthorize("hasAnyAuthority('PSICOLOGO')")
+    @GetMapping("/citasporfechas")
+    public List<AppointmentbyDateDTO> appointmentbydate(@RequestParam LocalDate date1){
+        List<String[]> list = aS.citasporFecha(date1);
+        List<AppointmentbyDateDTO> listdto = new ArrayList<>();
+        for(String[] columna : list){
+            AppointmentbyDateDTO dto = new AppointmentbyDateDTO();
+            dto.setPsychologyId(Integer.parseInt(columna[0]));
+            dto.setVeteranId(Integer.parseInt(columna[1]));
+            dto.setAppointmentDate(LocalDate.parse(columna[2]));
+            listdto.add(dto);
+        }
+        return listdto;
+    }
+
+    @GetMapping("/citasCanceladas")
+    public List<CancelledAppointmentsDTO> cancelledAppointments(){
+        List<String[]> list = aS.citasCanceladas();
+        List<CancelledAppointmentsDTO> listdto = new ArrayList<>();
+        for(String[] columna : list){
+            CancelledAppointmentsDTO dto = new CancelledAppointmentsDTO();
+            dto.setIdAppointment(Integer.parseInt(columna[0]));
+            dto.setAppointmentDate(LocalDate.parse(columna[1]));
+            dto.setStatus(columna[2]);
+            dto.setName(columna[3]);
+            dto.setPsychologyLastname(columna[4]);
+            dto.setVeteranLastname(columna[5]);
             listdto.add(dto);
         }
         return listdto;

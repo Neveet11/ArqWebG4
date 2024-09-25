@@ -34,4 +34,14 @@ public class EventServiceImplement implements IEventService {
     public void update(Event e) {
         eR.save(e);
     }
+
+    @Override
+    public List<String[]> eventosultimomes() {
+        return eR.eventdMonthBefore();
+    }
+
+    @Override
+    public List<String[]> eventoPorPsicologo() {
+        return eR.quantityEventbyPsicologo();
+    }
 }

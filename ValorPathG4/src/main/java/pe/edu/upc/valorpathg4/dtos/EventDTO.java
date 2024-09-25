@@ -4,6 +4,7 @@ import pe.edu.upc.valorpathg4.entities.EventType;
 import pe.edu.upc.valorpathg4.entities.Users;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class EventDTO {
 
@@ -13,8 +14,8 @@ public class EventDTO {
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDate registrationDate;
-    private Users verterano;
-    private Users psicologo;
+    private List<Users> verterano;
+    private List<Users> psicologo;
     private EventType eventType;
 
     public int getIdEvent() {
@@ -65,19 +66,19 @@ public class EventDTO {
         this.registrationDate = registrationDate;
     }
 
-    public Users getVerterano() {
+    public List<Users> getVerterano() {
         return verterano;
     }
 
-    public void setVerterano(Users verterano) {
+    public void setVerterano(List<Users> verterano) {
         this.verterano = verterano;
     }
 
-    public Users getPsicologo() {
+    public List<Users> getPsicologo() {
         return psicologo;
     }
 
-    public void setPsicologo(Users psicologo) {
+    public void setPsicologo(List<Users> psicologo) {
         this.psicologo = psicologo;
     }
 

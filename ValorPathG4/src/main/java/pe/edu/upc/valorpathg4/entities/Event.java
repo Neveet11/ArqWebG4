@@ -3,6 +3,7 @@ package pe.edu.upc.valorpathg4.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "Evento")
@@ -12,19 +13,19 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEvent;
 
-    @Column(name = "name", nullable = false, length = 10)
+    @Column(name = "name", nullable = false, length = 20)
     private String name;
 
-    @Column(name = "description", nullable = false, length = 10)
+    @Column(name = "description", nullable = false, length = 50)
     private String description;
 
-    @Column(name = "startDate", nullable = false, length = 10)
+    @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
 
-    @Column(name = "endDate", nullable = false, length = 10)
+    @Column(name = "endDate", nullable = false)
     private LocalDate endDate;
 
-    @Column(name = "registrationDate", nullable = false, length = 10)
+    @Column(name = "registrationDate", nullable = false)
     private LocalDate registrationDate;
 
     @ManyToOne

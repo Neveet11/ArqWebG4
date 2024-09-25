@@ -13,10 +13,10 @@ public class UseResources {
     @Column(name="fecha",nullable=false)
     private LocalDate fecha;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="idUs")
     private Users usuario;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="idRe")
     private Resource recurso;
     public UseResources() {}
 
